@@ -1,0 +1,22 @@
+version: '2.2'
+
+services:  
+  dev-container:
+    image: ghcr.io/suho0515/websocket:latest
+    container_name: dev-container
+    # depends_on:
+    #   - ros-master
+    # networks:
+    #   pcp-bridge-network:
+    #     ipv4_address: 192.168.56.11
+    environment:
+      # - "ROS_MASTER_URI=http://192.168.56.2:11311"
+      # - "ROS_HOSTNAME=192.168.56.11"
+      - "DISPLAY=host.docker.internal:0.0"
+      - "LIBGL_ALWAYS_INDIRECT=0"
+    volumes: 
+      - /home/aict/github/pcp/suho:/root/catkin_ws/src/suho
+    command: >
+      bash -c "tail -F anything"
+    privileged: true
+    restart: always
