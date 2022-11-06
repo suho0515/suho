@@ -6,7 +6,7 @@ networks:
 
 services:  
   ros-master:
-    image: ros:melodic-ros-core
+    image: ros:noetic-ros-core
     container_name: ros-master
     command: stdbuf -o L roscore
     networks:
@@ -50,7 +50,7 @@ services:
   #   restart: always
 
   dev-container:
-    image: ghcr.io/suho0515/websocket:latest
+    image: ghcr.io/suho0515/websocket:python3
     container_name: dev-container
     depends_on:
       - ros-master

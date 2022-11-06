@@ -1,0 +1,28 @@
+FROM osrf/ros:noetic-desktop-full
+
+# Basic
+# ========================================
+# Setting Catkin Workspace
+RUN /bin/bash -c "apt-get update &&\
+    source /opt/ros/noetic/setup.bash &&\
+    mkdir -p ~/catkin_ws/src &&\
+    cd ~/catkin_ws/src &&\
+    catkin_init_workspace &&\
+    cd ~/catkin_ws &&\
+    catkin_make &&\
+    source devel/setup.bash"
+
+# Install git
+RUN /bin/bash -c "apt-get install -y git"
+
+# Install Python3 pip
+RUN /bin/bash -c "source /opt/ros/noetic/setup.bash &&\
+    apt-get install -y python3-pip"
+
+# Install asyncio
+RUN /bin/bash -c "source /opt/ros/noetic/setup.bash &&\
+    pip3 install asyncio"
+
+# Install websockets
+RUN /bin/bash -c "source /opt/ros/noetic/setup.bash &&\
+    pip3 install websockets"
