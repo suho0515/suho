@@ -4,21 +4,16 @@ import asyncio
 import websockets
 import threading
 
-msgs = []
-
+msg = ""
 async def echo(websocket):
-    print(websocket.remote_address)
+    global msg
     async for message in websocket:
-        await websocket.send(message)
-        await websocket.send("test")
         # print(message)
-    #     msgs.append(message)
-    #     print(msgs)
-    # print(websocket)
-    # for i in range(len(msgs)):
-    #     await websocket.send(msgs[i])
-    #     # msgs.pop()
-    # print("send msgs")
+        if message != "test4":
+            msg = message
+        elif message == "test4":
+            await websocket.send(msg)
+
 
 async def main():
     async with websockets.serve(echo, "192.168.56.11", 3000):
