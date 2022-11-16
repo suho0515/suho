@@ -17,37 +17,37 @@ services:
       - "ROS_HOSTNAME=192.168.56.2"
     restart: always
 
-  # rosbridge-suite:
-  #   image: ghcr.io/suho0515/websocket:latest
-  #   container_name: rosbridge-suite
-  #   depends_on:
-  #     - ros-master    
-  #   command: >
-  #     bash -c "roslaunch rosbridge_server rosbridge_websocket.launch"
-  #   networks:
-  #     bridge-network:
-  #       ipv4_address: 192.168.56.3
-  #   ports:
-  #     - "9090:9090"
-  #   environment:
-  #     - "ROS_MASTER_URI=http://192.168.56.2:11311"
-  #     - "ROS_HOSTNAME=192.168.56.3"
-  #   restart: always
+  rosbridge-suite:
+    image: ghcr.io/suho0515/websocket:latest
+    container_name: rosbridge-suite
+    depends_on:
+      - ros-master    
+    command: >
+      bash -c "roslaunch rosbridge_server rosbridge_websocket.launch"
+    networks:
+      bridge-network:
+        ipv4_address: 192.168.56.3
+    ports:
+      - "9090:9090"
+    environment:
+      - "ROS_MASTER_URI=http://192.168.56.2:11311"
+      - "ROS_HOSTNAME=192.168.56.3"
+    restart: always
 
-  # simple-publisher:
-  #   image: ghcr.io/suho0515/websocket:latest
-  #   container_name: simple-publisher
-  #   depends_on:
-  #     - ros-master    
-  #   command: >
-  #     bash -c "roslaunch simple_publisher simple_pub_node.py"
-  #   networks:
-  #     bridge-network:
-  #       ipv4_address: 192.168.56.4
-  #   environment:
-  #     - "ROS_MASTER_URI=http://192.168.56.2:11311"
-  #     - "ROS_HOSTNAME=192.168.56.4"
-  #   restart: always
+  simple-publisher:
+    image: ghcr.io/suho0515/websocket:latest
+    container_name: simple-publisher
+    depends_on:
+      - ros-master    
+    command: >
+      bash -c "roslaunch simple_publisher simple_pub_node.py"
+    networks:
+      bridge-network:
+        ipv4_address: 192.168.56.4
+    environment:
+      - "ROS_MASTER_URI=http://192.168.56.2:11311"
+      - "ROS_HOSTNAME=192.168.56.4"
+    restart: always
 
   dev-container:
     image: ghcr.io/suho0515/websocket:python3
