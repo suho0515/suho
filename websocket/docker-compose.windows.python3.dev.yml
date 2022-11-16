@@ -35,12 +35,12 @@ services:
     restart: always
 
   simple-publisher:
-    image: ghcr.io/suho0515/websocket:latest
+    image: ghcr.io/suho0515/websocket:python3
     container_name: simple-publisher
     depends_on:
       - ros-master    
     command: >
-      bash -c "roslaunch simple_publisher simple_pub_node.py"
+      bash -c "source ~/catkin_ws/devel/setup.bash && rosrun simple_publisher simple_publisher_node.py"
     networks:
       bridge-network:
         ipv4_address: 192.168.56.4

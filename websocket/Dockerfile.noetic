@@ -30,3 +30,13 @@ RUN /bin/bash -c "source /opt/ros/noetic/setup.bash &&\
 # Install roslibpy
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash &&\
     pip3 install roslibpy"
+
+# Suho Package
+# ========================================
+RUN /bin/bash -c "source /opt/ros/noetic/setup.bash &&\
+    git clone https://github.com/suho0515/suho.git &&\
+    cp -r /suho ~/catkin_ws/src &&\
+    rm -rf suho &&\
+    cd ~/catkin_ws &&\
+    catkin_make &&\
+    source devel/setup.bash"
