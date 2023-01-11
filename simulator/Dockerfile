@@ -17,4 +17,4 @@ RUN apt install -y ros-foxy-nav2-bringup
 RUN apt install -y ros-foxy-joint-state-publisher-gui
 RUN apt install -y ros-foxy-xacro
 
-RUN apt-get install -y gedit
+RUN apt-get install -y nano
